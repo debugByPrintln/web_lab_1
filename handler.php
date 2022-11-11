@@ -44,8 +44,6 @@ function checkHit($value_x, $value_y, $value_r) {
 function getDatetimeWithOffset($offset) {
     $timezone_name = timezone_name_from_abbr("", -$offset*60, false);
     $dt = new DateTime("now", new DateTimeZone($timezone_name));
-    // $timestamp = time();
-    // $dt->setTimestamp($timestamp);
     return $dt->format("Y-m-d H:i:s");
 }
 
@@ -58,22 +56,12 @@ if (isset($_GET["value_R"])){
     $current_time = getDatetimeWithOffset($_GET["timezone_offset_minutes"]);
     $script_time = (microtime(true) - $start);
 
-    // echo json_encode(array(
-    //     "value_X" => $x,
-    //     "value_Y" => $y,
-    //     "value_R" => $r,
-    //     "value_hit" => $hit,
-    //     "current_time" => $current_time,
-    //     "script_time_seconds" => $script_time
-    // ));
-    echo("
-        {
-            \"value_X\": \"$x\",
-            \"value_Y\": \"$y\",
-            \"value_R\": \"$r\",
-            \"value_hit\": \"$hit\",
-            \"current_time\": \"$current_time\",
-            \"script_time_seconds\": \"$script_time\"
-        }
-        ");
+     echo json_encode(array(
+         "value_X" => $x,
+         "value_Y" => $y,
+         "value_R" => $r,
+         "value_hit" => $hit,
+         "current_time" => $current_time,
+         "script_time_seconds" => $script_time
+     ));
 }
